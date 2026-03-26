@@ -1,0 +1,12 @@
+# Godot
+.import/
+.export/
+.export.cfg
+.godot/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
