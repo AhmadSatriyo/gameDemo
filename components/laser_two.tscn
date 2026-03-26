@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dch84v3mi4f7g"]
+
+[ext_resource type="Script" uid="uid://jo7lelkawkln" path="res://scripts/laser.gd" id="1_5dgxe"]
+[ext_resource type="Texture2D" uid="uid://d26c4s7g153ui" path="res://art/kenney_space-shooter-redux/PNG/Lasers/laserBlue09.png" id="2_asqem"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ocflt"]
+radius = 22.022715
+
+[node name="laserTwo" type="CharacterBody2D" unique_id=781980416]
+script = ExtResource("1_5dgxe")
+laser = null
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=916101604]
+texture_filter = 1
+position = Vector2(1, 5)
+texture = ExtResource("2_asqem")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=804814999]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1294914790]
+position = Vector2(1, 5)
+shape = SubResource("CircleShape2D_ocflt")
+
+[node name="rPoint" type="Node2D" parent="." unique_id=477522094]
+position = Vector2(21, 0)
+rotation = 0.5235988
+
+[node name="lPoint" type="Node2D" parent="." unique_id=233056555]
+position = Vector2(-21, 0)
+rotation = -0.5235988
+
+[node name="Timer" type="Timer" parent="." unique_id=1761312971]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

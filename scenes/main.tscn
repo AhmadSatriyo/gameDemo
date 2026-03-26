@@ -1,0 +1,536 @@
+[gd_scene format=3 uid="uid://ce6iqm1wrgs1y"]
+
+[ext_resource type="Script" uid="uid://b3ech38e37ecu" path="res://scripts/bg.gd" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://ohpn072d07i1" path="res://art/bg/8bit-pixel-art-night-sky-game-space-landscape-vector.jpg" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://bj4in12gkd4rj" path="res://scripts/ui.gd" id="3_choun"]
+[ext_resource type="FontFile" uid="uid://bokk6882m27uj" path="res://art/kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://dsobldftl6jea" path="res://art/chara/knight.png" id="4_85g3d"]
+[ext_resource type="Texture2D" uid="uid://bchgckjudmgrk" path="res://art/kenney_ui-pack/PNG/Blue/Double/button_rectangle_depth_border.png" id="5_tefeu"]
+[ext_resource type="FontFile" uid="uid://cjr8i1lld2j23" path="res://art/kenney_ui-pack/Font/Kenney Future Narrow.ttf" id="6_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://nu5hh64m66o6" path="res://art/chara/mage.png" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://ol64tphgpveg" path="res://art/chara/ranged1.png" id="8_85g3d"]
+[ext_resource type="Script" uid="uid://c1ibm1so50i0w" path="res://scripts/knightUI.gd" id="8_choun"]
+[ext_resource type="PackedScene" uid="uid://bljcww66mkqqw" path="res://components/laser_one.tscn" id="9_trceg"]
+[ext_resource type="PackedScene" uid="uid://dch84v3mi4f7g" path="res://components/laser_two.tscn" id="11_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://cxsfxycfimsad" path="res://components/laser_three.tscn" id="13_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://bpfdfrsiawnsy" path="res://components/player.tscn" id="14_a8y0u"]
+[ext_resource type="AudioStream" uid="uid://c6ysmp0ca7lbk" path="res://art/kenney_space-shooter-redux/Bonus/sfx_twoTone.ogg" id="15_jkv2x"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
+texture = ExtResource("1_o5qli")
+texture_region_size = Vector2i(1920, 410)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_sgp6g"]
+tile_size = Vector2i(1920, 410)
+sources/1 = SubResource("TileSetAtlasSource_0wfyh")
+
+[sub_resource type="Animation" id="Animation_sugp2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("space1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("space2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -820)]
+}
+
+[sub_resource type="Animation" id="Animation_jyhfs"]
+resource_name = "loop"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("space1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 650)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("space2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -820), Vector2(0, -170)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbgi4"]
+_data = {
+&"RESET": SubResource("Animation_sugp2"),
+&"loop": SubResource("Animation_jyhfs")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(20, 1149)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6xl0"]
+size = Vector2(20, 1362.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tefeu"]
+font = ExtResource("3_jyhfs")
+font_size = 75
+outline_size = 15
+outline_color = Color(0.43137255, 0.6745098, 0.7411765, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tipki"]
+font = ExtResource("6_o6xl0")
+font_size = 25
+outline_size = 10
+outline_color = Color(0, 0.10059011, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
+font = ExtResource("6_o6xl0")
+font_size = 21
+outline_size = 10
+outline_color = Color(0, 0.10059011, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_choun"]
+font_size = 21
+outline_size = 10
+outline_color = Color(0, 0.10059011, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
+font_size = 35
+outline_size = 10
+outline_color = Color(0, 0.10059011, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eb6dy"]
+font = ExtResource("3_jyhfs")
+font_size = 40
+outline_size = 15
+outline_color = Color(0.43137255, 0.6745098, 0.7411765, 1)
+
+[node name="Main" type="Node2D" unique_id=1611781840]
+
+[node name="bg" type="Node2D" parent="." unique_id=162621036]
+script = ExtResource("1_0wfyh")
+
+[node name="space1" type="Node2D" parent="bg" unique_id=573315232]
+
+[node name="TileMap" type="TileMap" parent="bg/space1" unique_id=40048348]
+position = Vector2(-351, 2)
+tile_set = SubResource("TileSet_sgp6g")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0)
+
+[node name="space2" type="Node2D" parent="bg" unique_id=2044785786]
+position = Vector2(0, -820)
+
+[node name="TileMap" type="TileMap" parent="bg/space2" unique_id=1363431495]
+position = Vector2(-351, 2)
+tile_set = SubResource("TileSet_sgp6g")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="bg" unique_id=493991779]
+libraries/ = SubResource("AnimationLibrary_tbgi4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="bg" unique_id=724123212]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bg/StaticBody2D" unique_id=1502729877]
+position = Vector2(0, 564.5)
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="bg/StaticBody2D" unique_id=199562011]
+position = Vector2(1154, 516)
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="bg/StaticBody2D" unique_id=148771050]
+position = Vector2(664, 648)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_o6xl0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="bg/StaticBody2D" unique_id=1776003646]
+position = Vector2(572, 1)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_o6xl0")
+
+[node name="ui" type="Node2D" parent="." unique_id=1215516966]
+script = ExtResource("3_choun")
+
+[node name="click" type="AudioStreamPlayer2D" parent="ui" unique_id=944879074]
+stream = ExtResource("15_jkv2x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ui" unique_id=250397456]
+
+[node name="startScreen" type="Node2D" parent="ui/CanvasLayer" unique_id=207837374]
+
+[node name="Label" type="Label" parent="ui/CanvasLayer/startScreen" unique_id=1823400986]
+offset_right = 1164.0
+offset_bottom = 266.0
+text = "Tahu Isi Project
+"
+label_settings = SubResource("LabelSettings_tefeu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ui/CanvasLayer/startScreen" unique_id=1656454580]
+texture_filter = 1
+position = Vector2(553, 254)
+scale = Vector2(6.214741, 4.5194116)
+texture = ExtResource("4_85g3d")
+
+[node name="buttonPlay" type="Node2D" parent="ui/CanvasLayer/startScreen" unique_id=301176896]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ui/CanvasLayer/startScreen/buttonPlay" unique_id=1952610798]
+offset_left = 418.0
+offset_top = 387.0
+offset_right = 713.0
+offset_bottom = 490.0
+texture = ExtResource("5_tefeu")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="ui/CanvasLayer/startScreen/buttonPlay" unique_id=964667687]
+offset_left = 432.0
+offset_top = 397.0
+offset_right = 704.0
+offset_bottom = 472.0
+text = "Play"
+label_settings = SubResource("LabelSettings_tipki")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonPlay" type="Button" parent="ui/CanvasLayer/startScreen/buttonPlay" unique_id=752614883]
+offset_left = 419.0
+offset_top = 388.0
+offset_right = 715.0
+offset_bottom = 493.0
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_tefeu")
+
+[node name="chooseScreen" type="Node2D" parent="ui/CanvasLayer" unique_id=862562641]
+visible = false
+
+[node name="playerClass" type="Node2D" parent="ui/CanvasLayer/chooseScreen" unique_id=1486786303]
+
+[node name="knight" type="Sprite2D" parent="ui/CanvasLayer/chooseScreen/playerClass" unique_id=969835064]
+texture_filter = 1
+position = Vector2(553, 254)
+scale = Vector2(6.214741, 4.5194116)
+texture = ExtResource("4_85g3d")
+script = ExtResource("8_choun")
+laser = ExtResource("9_trceg")
+
+[node name="point" type="Node2D" parent="ui/CanvasLayer/chooseScreen/playerClass/knight" unique_id=1045838969]
+position = Vector2(1.6090775, -44.253548)
+
+[node name="Timer" type="Timer" parent="ui/CanvasLayer/chooseScreen/playerClass/knight" unique_id=2076142124]
+wait_time = 0.5
+autostart = true
+
+[node name="mage" type="Sprite2D" parent="ui/CanvasLayer/chooseScreen/playerClass" unique_id=1194569096]
+texture_filter = 1
+position = Vector2(584, 235)
+scale = Vector2(6.214741, 4.5194116)
+texture = ExtResource("7_tipki")
+script = ExtResource("8_choun")
+laser = ExtResource("11_a8y0u")
+
+[node name="point" type="Node2D" parent="ui/CanvasLayer/chooseScreen/playerClass/mage" unique_id=84755787]
+position = Vector2(-3.3790588, -40.04946)
+
+[node name="Timer" type="Timer" parent="ui/CanvasLayer/chooseScreen/playerClass/mage" unique_id=1514359416]
+wait_time = 0.5
+autostart = true
+
+[node name="marksman" type="Sprite2D" parent="ui/CanvasLayer/chooseScreen/playerClass" unique_id=1932782771]
+texture_filter = 1
+position = Vector2(569, 239)
+scale = Vector2(6.214741, 4.5194116)
+texture = ExtResource("8_85g3d")
+script = ExtResource("8_choun")
+laser = ExtResource("13_jkv2x")
+
+[node name="point" type="Node2D" parent="ui/CanvasLayer/chooseScreen/playerClass/marksman" unique_id=1277388688]
+position = Vector2(-0.96543884, -40.934532)
+
+[node name="Timer" type="Timer" parent="ui/CanvasLayer/chooseScreen/playerClass/marksman" unique_id=459967071]
+wait_time = 0.5
+autostart = true
+
+[node name="buttonChoose" type="Node2D" parent="ui/CanvasLayer/chooseScreen" unique_id=1252654653]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ui/CanvasLayer/chooseScreen/buttonChoose" unique_id=618770850]
+offset_left = 416.0
+offset_top = 504.0
+offset_right = 711.0
+offset_bottom = 607.0
+texture = ExtResource("5_tefeu")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="ui/CanvasLayer/chooseScreen/buttonChoose" unique_id=1206274494]
+offset_left = 428.0
+offset_top = 516.0
+offset_right = 700.0
+offset_bottom = 591.0
+text = "Choose"
+label_settings = SubResource("LabelSettings_tipki")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonChoose" type="Button" parent="ui/CanvasLayer/chooseScreen/buttonChoose" unique_id=562534587]
+offset_left = 418.0
+offset_top = 504.0
+offset_right = 714.0
+offset_bottom = 609.0
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_tefeu")
+
+[node name="buttonKnight" type="Node2D" parent="ui/CanvasLayer/chooseScreen" unique_id=401685548]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ui/CanvasLayer/chooseScreen/buttonKnight" unique_id=1178675961]
+offset_left = 465.0
+offset_top = 380.0
+offset_right = 638.0
+offset_bottom = 483.0
+texture = ExtResource("5_tefeu")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="ui/CanvasLayer/chooseScreen/buttonKnight" unique_id=233872431]
+offset_left = 472.0
+offset_top = 390.0
+offset_right = 630.0
+offset_bottom = 465.0
+text = "Knight"
+label_settings = SubResource("LabelSettings_tipki")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonKnight" type="Button" parent="ui/CanvasLayer/chooseScreen/buttonKnight" unique_id=955606347]
+offset_left = 467.0
+offset_top = 380.0
+offset_right = 636.0
+offset_bottom = 482.0
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_tefeu")
+
+[node name="buttonMage" type="Node2D" parent="ui/CanvasLayer/chooseScreen" unique_id=1320661379]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ui/CanvasLayer/chooseScreen/buttonMage" unique_id=843657397]
+offset_left = 231.0
+offset_top = 383.0
+offset_right = 404.0
+offset_bottom = 486.0
+texture = ExtResource("5_tefeu")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="ui/CanvasLayer/chooseScreen/buttonMage" unique_id=917911015]
+offset_left = 238.0
+offset_top = 394.0
+offset_right = 396.0
+offset_bottom = 469.0
+text = "Mage"
+label_settings = SubResource("LabelSettings_tipki")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonMage" type="Button" parent="ui/CanvasLayer/chooseScreen/buttonMage" unique_id=678292644]
+offset_left = 232.0
+offset_top = 384.0
+offset_right = 405.0
+offset_bottom = 486.0
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_tefeu")
+
+[node name="buttonMarksman" type="Node2D" parent="ui/CanvasLayer/chooseScreen" unique_id=1922613254]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ui/CanvasLayer/chooseScreen/buttonMarksman" unique_id=676627218]
+offset_left = 712.0
+offset_top = 380.0
+offset_right = 885.0
+offset_bottom = 483.0
+texture = ExtResource("5_tefeu")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="ui/CanvasLayer/chooseScreen/buttonMarksman" unique_id=996403852]
+offset_left = 721.0
+offset_top = 391.0
+offset_right = 879.0
+offset_bottom = 466.0
+text = "Marksman"
+label_settings = SubResource("LabelSettings_85g3d")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonMarksman" type="Button" parent="ui/CanvasLayer/chooseScreen/buttonMarksman" unique_id=1866117553]
+offset_left = 712.0
+offset_top = 381.0
+offset_right = 885.0
+offset_bottom = 483.0
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_tefeu")
+
+[node name="inGameScreen" type="Node2D" parent="ui/CanvasLayer" unique_id=1516200606]
+visible = false
+
+[node name="buttonMute" type="Node2D" parent="ui/CanvasLayer/inGameScreen" unique_id=1305244702]
+position = Vector2(-903, -504)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ui/CanvasLayer/inGameScreen/buttonMute" unique_id=1534151247]
+modulate = Color(1, 1, 1, 0.6039216)
+offset_left = 928.0
+offset_top = 525.0
+offset_right = 1020.0
+offset_bottom = 601.0
+texture = ExtResource("5_tefeu")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="LabelOn" type="Label" parent="ui/CanvasLayer/inGameScreen/buttonMute" unique_id=930616611]
+modulate = Color(1, 1, 1, 0.6431373)
+offset_left = 935.0
+offset_top = 534.0
+offset_right = 1013.0
+offset_bottom = 587.0
+text = "x"
+label_settings = SubResource("LabelSettings_choun")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LabelOff" type="Label" parent="ui/CanvasLayer/inGameScreen/buttonMute" unique_id=1552406922]
+visible = false
+modulate = Color(1, 1, 1, 0.6431373)
+offset_left = 935.0
+offset_top = 533.0
+offset_right = 1013.0
+offset_bottom = 587.0
+text = "o"
+label_settings = SubResource("LabelSettings_choun")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonMute" type="Button" parent="ui/CanvasLayer/inGameScreen/buttonMute" unique_id=682661178]
+offset_left = 927.0
+offset_top = 524.0
+offset_right = 1020.0
+offset_bottom = 602.0
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_tefeu")
+
+[node name="LabelScoreAwal" type="Label" parent="ui/CanvasLayer/inGameScreen" unique_id=73454644]
+offset_left = 542.0
+offset_top = 23.0
+offset_right = 620.0
+offset_bottom = 76.0
+text = "0"
+label_settings = SubResource("LabelSettings_ya4ey")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="gameOverScreen" type="Node2D" parent="ui/CanvasLayer" unique_id=1678773142]
+visible = false
+
+[node name="LabelGameOver" type="Label" parent="ui/CanvasLayer/gameOverScreen" unique_id=2058587499]
+offset_right = 1164.0
+offset_bottom = 266.0
+text = "Game Over!
+"
+label_settings = SubResource("LabelSettings_tefeu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelScoreAkhir" type="Label" parent="ui/CanvasLayer/gameOverScreen" unique_id=190419549]
+offset_right = 1164.0
+offset_bottom = 450.0
+text = "Score: 0
+"
+label_settings = SubResource("LabelSettings_eb6dy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttonMenu" type="Node2D" parent="ui/CanvasLayer/gameOverScreen" unique_id=1578618507]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ui/CanvasLayer/gameOverScreen/buttonMenu" unique_id=1372531201]
+offset_left = 418.0
+offset_top = 387.0
+offset_right = 713.0
+offset_bottom = 490.0
+texture = ExtResource("5_tefeu")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="ui/CanvasLayer/gameOverScreen/buttonMenu" unique_id=166394475]
+offset_left = 432.0
+offset_top = 397.0
+offset_right = 704.0
+offset_bottom = 472.0
+text = "Menu"
+label_settings = SubResource("LabelSettings_tipki")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonMenu" type="Button" parent="ui/CanvasLayer/gameOverScreen/buttonMenu" unique_id=674681408]
+offset_left = 419.0
+offset_top = 388.0
+offset_right = 715.0
+offset_bottom = 493.0
+theme_type_variation = &"FlatButton"
+theme_override_styles/normal = SubResource("StyleBoxFlat_tefeu")
+
+[node name="player" parent="." unique_id=679964095 instance=ExtResource("14_a8y0u")]
+visible = false
+position = Vector2(561, 506)
+
+[connection signal="pressed" from="ui/CanvasLayer/startScreen/buttonPlay/ButtonPlay" to="ui" method="_on_button_play_pressed"]
+[connection signal="timeout" from="ui/CanvasLayer/chooseScreen/playerClass/knight/Timer" to="ui/CanvasLayer/chooseScreen/playerClass/knight" method="_on_timer_timeout"]
+[connection signal="timeout" from="ui/CanvasLayer/chooseScreen/playerClass/mage/Timer" to="ui/CanvasLayer/chooseScreen/playerClass/mage" method="_on_timer_timeout"]
+[connection signal="timeout" from="ui/CanvasLayer/chooseScreen/playerClass/marksman/Timer" to="ui/CanvasLayer/chooseScreen/playerClass/marksman" method="_on_timer_timeout"]
+[connection signal="pressed" from="ui/CanvasLayer/chooseScreen/buttonChoose/ButtonChoose" to="ui" method="_on_button_choose_pressed"]
+[connection signal="pressed" from="ui/CanvasLayer/chooseScreen/buttonKnight/ButtonKnight" to="ui" method="_on_button_knight_pressed"]
+[connection signal="pressed" from="ui/CanvasLayer/chooseScreen/buttonMage/ButtonMage" to="ui" method="_on_button_mage_pressed"]
+[connection signal="pressed" from="ui/CanvasLayer/chooseScreen/buttonMarksman/ButtonMarksman" to="ui" method="_on_button_marksman_pressed"]
+[connection signal="pressed" from="ui/CanvasLayer/inGameScreen/buttonMute/ButtonMute" to="ui" method="_on_button_mute_pressed"]
+[connection signal="pressed" from="ui/CanvasLayer/gameOverScreen/buttonMenu/ButtonMenu" to="ui" method="_on_button_menu_pressed"]
