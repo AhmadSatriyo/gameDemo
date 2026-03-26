@@ -1,3 +1,18 @@
+<<<<<<< HEAD
 # Godot 4+ specific ignores
 .godot/
 /android/
+=======
+# Godot
+.import/
+.export/
+.export.cfg
+.godot/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+>>>>>>> 4402509c1760fb1887e89efc7d4c874e2189a446
