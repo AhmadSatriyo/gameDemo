@@ -7,6 +7,14 @@ var cheater = false
 var rating = 100
 var skill = jago
 var grafik = rtx2090
+var network = 5g
+var bug = gaada
+var update = sering
+var support = baik
+var komunitas = besar
+var harga = gratis
+var fitur = lengkap
+var kontrol = mudah
 
 
 func _ready():
